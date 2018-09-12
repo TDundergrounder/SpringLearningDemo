@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="talkImp" class="com.lgy.springAOPDemo.springAOPTalkDemo.talk.TalkImp"/>
+    <bean id="hiDerrickBeforeMethods" class="com.lgy.springAOPDemo.springAOPTalkDemo.aopMethods.HiDerrickBeforeMethods"/>
+    <bean id="hiDerrickAfterMethods" class="com.lgy.springAOPDemo.springAOPTalkDemo.aopMethods.HiDerrickAfterMethods"/>
+
+    <!--<bean id="talkProxy" class="org.springframework.aop.framework.ProxyFactoryBean">-->
+        <!--<property name="proxyInterfaces" value="ITalk"></property>-->
+        <!--<property name="interceptorNames">-->
+            <!--<list>-->
+                <!--<value>hiDerrickBeforeMethods</value>-->
+                <!--<value>hiDerrickAfterMethods</value>-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--<property name="target" ref="talkImp"></property>-->
+    <!--</bean>-->
+    <bean id="talkProxy" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:proxyInterfaces="com.lgy.springAOPDemo.springAOPTalkDemo.talk.ITalk"
+          p:interceptorNames="hiDerrickBeforeMethods,hiDerrickAfterMethods"
+          p:target-ref="talkImp"/>
+</beans>

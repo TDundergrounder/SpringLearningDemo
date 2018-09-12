@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="custService" class="com.lgy.springAOPDemo.springAOPCustServiceDemo.custService.CustService">
+        <property name="name" value="test"></property>
+        <property name="url" value="www.abcd.com"></property>
+    </bean>
+    <bean id="hiDerrickBeforeMethods" class="com.lgy.springAOPDemo.springAOPCustServiceDemo.aopMethods.HiDerrickBeforeMethods"/>
+    <bean id="hiDerrickAfterMethods" class="com.lgy.springAOPDemo.springAOPCustServiceDemo.aopMethods.HiDerrickAfterMethods"/>
+    <bean id="hiDerrickThrowsAdvice" class="com.lgy.springAOPDemo.springAOPCustServiceDemo.aopMethods.HiDerrickThrowsAdvice"/>
+    <bean id="hiDerrickAroundMethods" class="com.lgy.springAOPDemo.springAOPCustServiceDemo.aopMethods.HiDerrickAroundMethods"/>
+
+    <bean id="custServiceBeforeProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interceptorNames">
+            <list>
+                <value>hiDerrickBeforeMethods</value>
+            </list>
+        </property>
+        <property name="target" ref="custService"></property>
+    </bean>
+
+    <bean id="custServiceAfterProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="custService"></property>
+        <property name="interceptorNames">
+            <list>
+                <value>hiDerrickAfterMethods</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="custServiceThrowsProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="custService"></property>
+        <property name="interceptorNames">
+            <list>
+                <value>hiDerrickThrowsAdvice</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="custServiceAroundProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="custService"></property>
+        <property name="interceptorNames">
+            <list>
+                <value>hiDerrickAroundMethods</value>
+            </list>
+        </property>
+    </bean>
+</beans>

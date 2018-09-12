@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <bean id="group" class="com.lgy.springOrgDemo.basic.Group">
+        <constructor-arg name="grpId" value="123"/>
+        <constructor-arg name="grpName" value="n"/>
+        <property name="GrpName" value="abctest"></property>
+        <property name="GrpId" value="123231"></property>
+    </bean>
+    <bean id="person" class="com.lgy.springOrgDemo.basic.Person">
+        <property name="age" value="18"></property>
+        <property name="name" value="teser"></property>
+        <property name="group" ref="group"></property>
+    </bean>
+    <bean id="propertyDemo" class="com.lgy.springOrgDemo.others.PropertyDemo">
+        <property name="arrs">
+            <list>
+                <value>test-01</value>
+                <value>test-02</value>
+                <value>test-03</value>
+                <value>test-04</value>
+                <value>test-05</value>
+            </list>
+        </property>
+        <property name="list">
+            <list>
+                <value>23</value>
+                <value>18</value>
+                <value>117</value>
+                <value>-24</value>
+                <value>0</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="first" value="app"></entry>
+                <entry key="second" value="apptest"></entry>
+                <entry key="third" value="apptest1"></entry>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="name">test</prop>
+                <prop key="url">www.test.com</prop>
+                <prop key="port">80</prop>
+            </props>
+        </property>
+    </bean>
+
+    <context:component-scan base-package="com.lgy.springAnnotationDemo"/>
+
+    <bean id="lion" class="com.lgy.springAnnotationDemo.Lion">
+        <property name="eyeColor" value="blue"></property>
+        <property name="mouthSize" value="100"></property>
+    </bean>
+    <bean id="tiger" class="com.lgy.springAnnotationDemo.Tiger">
+        <property name="eyeColor" value="brown"/>
+        <property name="mouthSize" value="80"/>
+    </bean>
+
+    <bean id="zoo" class="com.lgy.springAnnotationDemo.Zoo"/>
+
+    <context:component-scan base-package="com.lgy.testServlet"/>
+
+
+
+</beans>
